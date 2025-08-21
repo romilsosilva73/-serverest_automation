@@ -126,27 +126,28 @@ Cypress: 14.5.4
 
 Instalação (versão fixada)
 npm i -D cypress@14.5.4
-# ou
+ ou
 yarn add -D cypress@14.5.4
-# ou
+ ou
 pnpm add -D cypress@14.5.4
 
 Verificação
 npx cypress --version
-# Deve exibir: Cypress package version: 14.5.4
+ Deve exibir: Cypress package version: 14.5.4
 
 ================================================================
 
 12) COMO RODAR
 
-# abrir o runner
+ abrir o runner
 npx cypress open
 
-# rodar só Front (UI)
+ rodar só Front (UI)
 npx cypress run --spec "cypress/e2e/serverest_automations/serverest_WEB.cy.js"
 
-# rodar só API
+ rodar só API
 npx cypress run --spec "cypress/e2e/serverest_automations/serverest_API.cy.js"
 
-# (opcional) escolher navegador
+ (opcional) escolher navegador
 npx cypress run --browser chrome --spec "cypress/e2e/serverest_automations/*.cy.js"
+
