@@ -163,3 +163,34 @@ Locators e dados de teste centralizados (support/locators.js)
 Concentrar seletores, URLs, endpoints e payloads em um único arquivo facilita a manutenção e padroniza o acesso aos elementos e dados.
 Benefícios: atualização simples quando a UI muda, consistência entre cenários e menor flakiness.
 
+
+13 ) Observação sobre credenciais de usuário de teste
+
+Durante a execução das automações, foi percebido que as credenciais do usuário usado nos testes deixam de existir entre um dia e outro. Exemplo: no dia 1 as automações rodam com sucesso; ao executar novamente no dia 2, o login falha porque o usuário não existe mais no sistema.
+
+Possíveis causas (não confirmadas): rotina de limpeza do ambiente, reset de banco entre janelas de manutenção ou política de expiração de contas de teste.
+
+Impacto: as suites que dependem de login quebram se o usuário de teste não for recriado antes da execução.
+
+Como verificar rapidamente:
+
+Criar um usuário de teste e validar o login no mesmo dia.
+
+Reexecutar as automações no dia seguinte ou após um reset do ambiente.
+
+Observar que o login falha por usuário inexistente/credenciais inválidas.
+
+Contorno sugerido para execução local/CI:
+
+Recriar a massa de dados no início da execução (seed), garantindo que o usuário exista antes dos cenários que exigem autenticação.
+
+Utilizar um identificador único por execução (e-mail com timestamp) para evitar colisão de dados.
+
+Recomendação: alinhar com o time de desenvolvimento/infra para definir uma das opções:
+
+Disponibilizar um usuário de teste “fixo” que não seja apagado por rotinas de limpeza; ou
+
+Documentar a janela e a política de reset do ambiente; ou
+
+Oferecer um caminho oficial de seed (ex.: endpoint/script) para criar o usuário de teste no pipeline antes das execuções.
+
