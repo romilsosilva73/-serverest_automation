@@ -151,3 +151,15 @@ npx cypress run --spec "cypress/e2e/serverest_automations/serverest_API.cy.js"
  (opcional) escolher navegador
 npx cypress run --browser chrome --spec "cypress/e2e/serverest_automations/*.cy.js"
 
+13) Estratégias utilizadas
+
+Para tornar a suíte reutilizável, legível e fácil de manter, foram aplicadas duas estratégias principais: comandos customizados do Cypress e locators/dados de teste centralizados.
+
+Comandos customizados do Cypress (support/commands.js)
+Encapsulam ações recorrentes (ex.: cy.loginFrontend(), cy.loginFrontendADM(), cy.getToken(), cy.createProduto()), reduzindo duplicação e deixando os testes mais expressivos.
+Benefícios: reuso, legibilidade, menor acoplamento e specs mais enxutos.
+
+Locators e dados de teste centralizados (support/locators.js)
+Concentrar seletores, URLs, endpoints e payloads em um único arquivo facilita a manutenção e padroniza o acesso aos elementos e dados.
+Benefícios: atualização simples quando a UI muda, consistência entre cenários e menor flakiness.
+
